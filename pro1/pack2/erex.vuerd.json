@@ -1,0 +1,328 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dineug/erd-editor/main/json-schema/schema.json",
+  "version": "3.0.0",
+  "settings": {
+    "width": 2000,
+    "height": 2000,
+    "scrollTop": -73.75,
+    "scrollLeft": -49.15,
+    "zoomLevel": 1,
+    "show": 431,
+    "database": 4,
+    "databaseName": "test",
+    "canvasType": "ERD",
+    "language": 1,
+    "tableNameCase": 4,
+    "columnNameCase": 2,
+    "bracketType": 1,
+    "relationshipDataTypeSync": true,
+    "relationshipOptimization": false,
+    "columnOrder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "maxWidthComment": -1,
+    "ignoreSaveSettings": 0
+  },
+  "doc": {
+    "tableIds": [
+      "-_UsPt2au_g2KmPai88EF",
+      "2yzD9RP1rIzS_m_wLnp4V"
+    ],
+    "relationshipIds": [
+      "d-k1tEqiBHAzHQAv6JaG5"
+    ],
+    "indexIds": [],
+    "memoIds": []
+  },
+  "collections": {
+    "tableEntities": {
+      "-_UsPt2au_g2KmPai88EF": {
+        "id": "-_UsPt2au_g2KmPai88EF",
+        "name": "buser",
+        "comment": "",
+        "columnIds": [
+          "xk1ChYlfzQ891XBJWm05I",
+          "IhhuVb2q4-L1FoXt1GUR_",
+          "iSbYF2wPBOTkY9Y55Col9"
+        ],
+        "seqColumnIds": [
+          "xk1ChYlfzQ891XBJWm05I",
+          "IhhuVb2q4-L1FoXt1GUR_",
+          "iSbYF2wPBOTkY9Y55Col9"
+        ],
+        "ui": {
+          "x": 180.0526,
+          "y": 125.9383,
+          "zIndex": 2,
+          "widthName": 60,
+          "widthComment": 60,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1771902372669,
+          "createAt": 1771901428514
+        }
+      },
+      "2yzD9RP1rIzS_m_wLnp4V": {
+        "id": "2yzD9RP1rIzS_m_wLnp4V",
+        "name": "jikwon",
+        "comment": "",
+        "columnIds": [
+          "NALjA1mZRybRqswLkFbjP",
+          "-sQily9FGheawcQQDfzOA",
+          "Cl7CF3WD5NX7C4HCVD4ZY",
+          "8JCmmRsItSDEoLi2_RtuJ",
+          "BROhxaIO_L8U78g7sICik"
+        ],
+        "seqColumnIds": [
+          "NALjA1mZRybRqswLkFbjP",
+          "-sQily9FGheawcQQDfzOA",
+          "Cl7CF3WD5NX7C4HCVD4ZY",
+          "8JCmmRsItSDEoLi2_RtuJ",
+          "BROhxaIO_L8U78g7sICik"
+        ],
+        "ui": {
+          "x": 661.579,
+          "y": 101.8421,
+          "zIndex": 38,
+          "widthName": 60,
+          "widthComment": 60,
+          "color": "#0006FF"
+        },
+        "meta": {
+          "updateAt": 1771902694776,
+          "createAt": 1771901673594
+        }
+      }
+    },
+    "tableColumnEntities": {
+      "xk1ChYlfzQ891XBJWm05I": {
+        "id": "xk1ChYlfzQ891XBJWm05I",
+        "tableId": "-_UsPt2au_g2KmPai88EF",
+        "name": "buserno",
+        "comment": "",
+        "dataType": "int",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1771901610370,
+          "createAt": 1771901509058
+        }
+      },
+      "IhhuVb2q4-L1FoXt1GUR_": {
+        "id": "IhhuVb2q4-L1FoXt1GUR_",
+        "tableId": "-_UsPt2au_g2KmPai88EF",
+        "name": "busername",
+        "comment": "",
+        "dataType": "VARCHAR(10)",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 61,
+          "widthComment": 60,
+          "widthDataType": 75,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1771901617074,
+          "createAt": 1771901590098
+        }
+      },
+      "iSbYF2wPBOTkY9Y55Col9": {
+        "id": "iSbYF2wPBOTkY9Y55Col9",
+        "tableId": "-_UsPt2au_g2KmPai88EF",
+        "name": "busertel",
+        "comment": "",
+        "dataType": "VARCHAR(15)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 75,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1771901649452,
+          "createAt": 1771901630434
+        }
+      },
+      "NALjA1mZRybRqswLkFbjP": {
+        "id": "NALjA1mZRybRqswLkFbjP",
+        "tableId": "2yzD9RP1rIzS_m_wLnp4V",
+        "name": "jikwonno",
+        "comment": "",
+        "dataType": "int",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1771901694850,
+          "createAt": 1771901680994
+        }
+      },
+      "-sQily9FGheawcQQDfzOA": {
+        "id": "-sQily9FGheawcQQDfzOA",
+        "tableId": "2yzD9RP1rIzS_m_wLnp4V",
+        "name": "jikwonname",
+        "comment": "",
+        "dataType": "VARCHAR(10)",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 66,
+          "widthComment": 60,
+          "widthDataType": 75,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1771901732572,
+          "createAt": 1771901714358
+        }
+      },
+      "Cl7CF3WD5NX7C4HCVD4ZY": {
+        "id": "Cl7CF3WD5NX7C4HCVD4ZY",
+        "tableId": "2yzD9RP1rIzS_m_wLnp4V",
+        "name": "jikwonjik",
+        "comment": "",
+        "dataType": "CHAR(10)",
+        "default": "사원",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1771901773069,
+          "createAt": 1771901738057
+        }
+      },
+      "8JCmmRsItSDEoLi2_RtuJ": {
+        "id": "8JCmmRsItSDEoLi2_RtuJ",
+        "tableId": "2yzD9RP1rIzS_m_wLnp4V",
+        "name": "busernum",
+        "comment": "",
+        "dataType": "int",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1771902036112,
+          "createAt": 1771901908384
+        }
+      },
+      "BROhxaIO_L8U78g7sICik": {
+        "id": "BROhxaIO_L8U78g7sICik",
+        "tableId": "2yzD9RP1rIzS_m_wLnp4V",
+        "name": "busernum",
+        "comment": "",
+        "dataType": "int",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 2,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1771902073570,
+          "createAt": 1771902069282
+        }
+      }
+    },
+    "relationshipEntities": {
+      "t9KrQwcmI8x4QRDFdHHPM": {
+        "id": "t9KrQwcmI8x4QRDFdHHPM",
+        "identification": false,
+        "relationshipType": 16,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "-_UsPt2au_g2KmPai88EF",
+          "columnIds": [
+            "xk1ChYlfzQ891XBJWm05I"
+          ],
+          "x": 545,
+          "y": 195.833,
+          "direction": 2
+        },
+        "end": {
+          "tableId": "2yzD9RP1rIzS_m_wLnp4V",
+          "columnIds": [
+            "8JCmmRsItSDEoLi2_RtuJ"
+          ],
+          "x": 903,
+          "y": 194,
+          "direction": 1
+        },
+        "meta": {
+          "updateAt": 1771901908385,
+          "createAt": 1771901908385
+        }
+      },
+      "d-k1tEqiBHAzHQAv6JaG5": {
+        "id": "d-k1tEqiBHAzHQAv6JaG5",
+        "identification": false,
+        "relationshipType": 16,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "-_UsPt2au_g2KmPai88EF",
+          "columnIds": [
+            "xk1ChYlfzQ891XBJWm05I"
+          ],
+          "x": 561.0526,
+          "y": 189.9383,
+          "direction": 2
+        },
+        "end": {
+          "tableId": "2yzD9RP1rIzS_m_wLnp4V",
+          "columnIds": [
+            "BROhxaIO_L8U78g7sICik"
+          ],
+          "x": 661.579,
+          "y": 189.84210000000002,
+          "direction": 1
+        },
+        "meta": {
+          "updateAt": 1771902103913,
+          "createAt": 1771902069282
+        }
+      }
+    },
+    "indexEntities": {},
+    "indexColumnEntities": {},
+    "memoEntities": {}
+  }
+}
