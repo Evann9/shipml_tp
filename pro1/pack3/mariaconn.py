@@ -7,7 +7,6 @@ config = {
     'database' : 'test',
     'port' : 3306,
     'charset' : 'utf8'
-
 }
 
 with open('mydb.dat', mode='wb') as obj:
