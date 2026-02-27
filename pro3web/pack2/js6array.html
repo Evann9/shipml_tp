@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+<body>
+js Array(배열) : 순서가 있는 여러 개의 자료를 대표명을 주고 첨자로 기억장소를 구분하는 자료구조<br>
+반복처리가 효과적임.<br>
+형식: 배열명 = new Array();
+<hr>
+<script type= "text/javascript">
+let aa = new Array(); // 크기가 가변적 new Array(3)도 가능하나 권장 X
+aa[0] = 10; aa[1] = 5.6; aa[3] = '결과는'; 
+aa[4] = '안녕'; aa[5] = true; 
+aa[6] = {kbs:9, sbs:5}// 배열 요소값 type은 마음대로 . json type도 가능 {key:value}
+
+document.write(aa, ' ',typeof(aa));  // 배열 타입은 object 
+document.write(`<br>${aa[0]}  ${aa[1]} 전체 크기:${aa.length}`)
+let su = 0, su2 = 0;
+document.write(`<br>${aa[0]}  ${aa[su]} ${aa[su2]} 전체 크기:${aa.length}`) // 첨자는 상수 또는 변수도 가능
+
+document.write('<br>');
+let bb = new Array(100, 200, 300); // 배열 선언 시 초기치 부여
+document.write(`<br>${bb[0]}  ${bb[1]} ${bb[2]}`)
+
+document.write('<br>');
+let cc = [];  // 비어있는 배열 선언. 배열 리터럴
+cc[0] = 'tom';
+cc.push(23); // 메소드를 이용해 값을 저장
+cc.push('seoul');
+cc.push(82,1234,5678);
+document.write(`<br>${cc[0]} ${cc[1]} ${cc[2]} ${cc[3]} ${cc[4]} ${cc[5]}`)
+cc[99] = 'wow';
+document.write(`<br> cc 배열의 크기는 ${cc.length}`);
+document.write('<hr>')
+let dd = new Array();  // 배열 선언 후 for를 통해 자료 입출력
+for(let m = 0; m < 10; m++){
+    dd[m] = m + 1;
+}
+document.write('dd[0] : ' , dd[0])
+document.write('<br>');
+for(let m = 0; m < 10; m++){
+    document.write(dd[m] + "&nbsp;&nbsp;&nbsp;");   // 일반 사용자에게 출력
+    console.log(dd[m])   // 개발자가 개발 도중 값 참조 시 사용
+}
+document.write('<br>');
+let myarr = [
+    '안녕', true, 3.5, {name:'신기해'},
+    function(){
+        document.write('난 함수');
+    }
+]
+document.write(myarr[0]);
+document.write(myarr[3].name);
+document.write('<br>');
+myarr[4]()
+
+document.write('<hr>');
+let korea = ['연필', '지우개','노트']; // 배열 요소 출력 for
+// 방법1
+for(let i = 0; i < korea.length; i++){
+    document.write(korea[i] + ' ');
+}
+// 방법2
+for(let i of korea){
+    document.write(i + ' ');
+}
+// 방법3
+for(let i in korea){
+    document.write(korea[i] + ' ');
+}
+document.write('<br>');
+// 배열 요소 제거 : delete, splice
+let ar = ['i', 'go', 'home'];
+delete ar[1] // go 삭제, 자리는 남음
+document.write(ar,' ', ar.length);
+
+document.write('<br>');
+ar = ['i', 'go', 'home'];
+ar.splice(1,1) // 인덱스 1부터 1개 삭제 (자리도 삭제)
+document.write(ar,' ', ar.length);
+
+document.write('<br>');
+// 구조분해 할당 : 배열, 객체의 값들을 추출하여 한번에 여러 변수에 할당함.
+let nums = [1,2,3,4];
+let [a1,a2,a3] = nums;
+document.write(`${a1} ${a2} ${a3}`);
+
+document.write('<br>');
+// 전개 연산자 : ...
+const fruits = ['apple','peach','melon'];
+const imsi = [...fruits];   // 배열에 담기
+document.write(imsi);
+
+</script>
+</body>
+</html>

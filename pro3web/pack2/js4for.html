@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+반복문 for(초기값;조건;증가값) <br>
+<script>
+    let a = 1
+    for(a = 1; a <= 5; a = a + 1){  // ++a, a++, a+=1 다 가능
+        document.write('a 값은 ' + a + '<br>')
+    }
+    document.write('for 블럭 수행 후 a 값은 ' + a + '<br>')
+
+    for(let a = 5; a>=1; a--){ 
+        document.write('a 값은 ' + a + '<br>')
+    }
+
+    document.write('<br>')
+    for(let a = 3; a < 11; a += 2){ 
+        document.write('a 값은 ' + a + '<br>')
+    }
+    document.write('<br>다중 for<br>');
+    for(let i = 1; i <= 3; i++){ 
+        document.write('i 값은 => ' + i + '&nbsp;&nbsp;');
+        for(let j = 1; j <= 4; j++){ 
+        document.write('j : ' + j + '&nbsp;&nbsp;');
+        }
+        document.write('<br>');
+    }
+
+    document.write('<br>1 ~ 10 까지의 정수 합은?<br>');
+    let hap = 0;  // 누적 변수 초기화
+    for(let su = 1; su <= 10; su++){
+        hap = hap + su;  // hap += su
+    }
+    document.write(hap);
+
+    document.write('<br>1 ~ 100 까지의 정수 중 2의 배수이나 5의 배수가 아닌 수의 합 출력<br>');
+    let sum = 0;
+    for(let a = 1; a <= 100; a++){
+        // if (a % 2 == 0 && a % 5 != 0)
+        // ==는 느슨한 동등 비교로 타입을 자동 변환하여 값만 비교하고,
+        // ===는 엄격한 일치 비교로 값과 데이터 타입이 모두 같아야 true를 반환
+        if (a % 2 === 0 && a % 5 !== 0){     // 권장
+            sum = sum + a;
+        }
+    }
+    document.write(sum);
+
+    document.write('<hr> 2 ~ 9 구구단 출력 - table에 출력<br>')
+    document.write("<table border='1'>");
+        for (let a = 2; a < 10; a++){
+            document.write('<tr>')
+            for(let b = 1; b < 10; b++){
+                // document.write('<td>')
+                // document.write(a + "x" + b + "=" + a * b)
+                // document.write('</td>')
+                document.write(`<td>${a}*${b}=${a*b}&nbsp;&nbsp;</td>`);  // 템플릿 문자열
+            }
+            document.write('</tr>');
+        }
+    document.write("</table>");
+</script>
+</body>
+</html>
