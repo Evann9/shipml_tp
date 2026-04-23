@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (10, 6)
 sns.set_theme(style="whitegrid")
 
-df = pd.read_csv("shiptype_cleaned/ais_Passenger_cleaned.csv")
+df = pd.read_csv("shiptype/shiptype_cleaned/ais_Passenger_cleaned.csv")
 
 # 1. 기본 확인
 print(df.shape)
