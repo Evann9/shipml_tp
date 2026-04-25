@@ -1,0 +1,15 @@
+# Core data and ML stack
+numpy==2.3.5
+pandas==2.3.3
+scipy==1.16.3
+scikit-learn==1.7.2
+joblib==1.5.2
+
+# Optional model candidate used by ship-type experiments
+xgboost==3.2.0
+
+# Web map backend
+Flask==3.1.2
+
+# Report/chart export
+matplotlib==3.10.6

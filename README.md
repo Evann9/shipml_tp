@@ -46,6 +46,21 @@ $env:GITHUB_TOKEN="ghp_..."
 .\scripts\download_model_artifacts_from_github_release.ps1
 ```
 
+## 환경 설정
+
+Conda 환경을 새로 만들 때:
+
+```powershell
+conda env create -f environment.yml
+conda activate shipml
+```
+
+이미 만든 Python 환경에 패키지만 설치할 때:
+
+```powershell
+C:\Users\green\anaconda3\envs\myproject\python.exe -m pip install -r requirements.txt
+```
+
 ## 실행 순서
 
 ```powershell
