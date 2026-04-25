@@ -13,3 +13,4 @@ dependencies:
       - xgboost==3.2.0
       - Flask==3.1.2
       - matplotlib==3.10.6
+      - koreanize-matplotlib==0.1.1

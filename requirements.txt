@@ -13,3 +13,4 @@ Flask==3.1.2
 
 # Report/chart export
 matplotlib==3.10.6
+koreanize-matplotlib==0.1.1
