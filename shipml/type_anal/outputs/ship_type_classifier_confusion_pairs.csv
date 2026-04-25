@@ -1,0 +1,36 @@
+﻿model_name,display_name,actual,predicted,count,actual_support,actual_error_rate
+random_forest,RandomForest,Tanker,Cargo,5464,15085,0.3622141199867418
+random_forest,RandomForest,Cargo,Tanker,2383,39683,0.06005090340952045
+random_forest,RandomForest,Passenger,Cargo,936,3428,0.27304550758459745
+random_forest,RandomForest,Dredging,Cargo,183,471,0.3885350318471338
+random_forest,RandomForest,Towing,Tug,113,160,0.70625
+random_forest,RandomForest,Fishing,Towing,110,2846,0.03865073787772312
+random_forest,RandomForest,Military,Passenger,105,1605,0.06542056074766354
+random_forest,RandomForest,Military,Cargo,102,1605,0.06355140186915888
+random_forest,RandomForest,Military,Dredging,90,1605,0.056074766355140186
+random_forest,RandomForest,Dredging,Tanker,89,471,0.18895966029723993
+random_forest,RandomForest,Fishing,Tug,87,2846,0.03056921995783556
+random_forest,RandomForest,Passenger,Tanker,87,3428,0.025379229871645273
+random_forest,RandomForest,Military,Tug,85,1605,0.0529595015576324
+random_forest,RandomForest,Cargo,Passenger,77,39683,0.0019403774916210972
+random_forest,RandomForest,Cargo,Dredging,75,39683,0.0018899780762543154
+random_forest,RandomForest,Tanker,Dredging,67,15085,0.004441498176997017
+random_forest,RandomForest,Cargo,Pilot,57,39683,0.0014363833379532798
+random_forest,RandomForest,Towing,Fishing,47,160,0.29375
+random_forest,RandomForest,Tug,Pilot,41,1182,0.03468697123519458
+random_forest,RandomForest,Cargo,Fishing,29,39683,0.0007307915228183353
+random_forest,RandomForest,SAR,Pilot,28,58,0.4827586206896552
+random_forest,RandomForest,HSC,Cargo,20,1993,0.010035122930255895
+random_forest,RandomForest,Law enforcement,Dredging,19,74,0.25675675675675674
+random_forest,RandomForest,Tanker,Fishing,17,15085,0.001126947298641034
+random_forest,RandomForest,Tug,Towing,16,1182,0.01353637901861252
+random_forest,RandomForest,Passenger,Military,13,3428,0.003792298716452742
+random_forest,RandomForest,Cargo,Towing,12,39683,0.0003023964922006905
+random_forest,RandomForest,Tug,Fishing,11,1182,0.009306260575296108
+random_forest,RandomForest,Military,Law enforcement,9,1605,0.005607476635514018
+random_forest,RandomForest,HSC,Passenger,4,1993,0.002007024586051179
+random_forest,RandomForest,Cargo,Military,3,39683,7.559912305017262e-05
+random_forest,RandomForest,Fishing,Tanker,3,2846,0.0010541110330288123
+random_forest,RandomForest,Pilot,Dredging,3,583,0.005145797598627788
+random_forest,RandomForest,Military,Tanker,2,1605,0.0012461059190031153
+random_forest,RandomForest,Tanker,Military,2,15085,0.0001325820351342393

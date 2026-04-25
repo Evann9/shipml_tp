@@ -21,10 +21,10 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder, StandardScaler
 
 
-DEFAULT_DATA_PATH = Path(__file__).resolve().parent / "ais_data_with_trig.csv"
+DEFAULT_DATA_PATH = Path(__file__).resolve().parent / "ais_ship_type_features.csv"
 DEFAULT_OUTPUT_DIR = Path(__file__).resolve().parent / "outputs"
-DEFAULT_MODEL_PATH = DEFAULT_OUTPUT_DIR / "best_ship_type_model.joblib"
-DEFAULT_METRICS_PATH = DEFAULT_OUTPUT_DIR / "best_ship_type_model_metrics.json"
+DEFAULT_MODEL_PATH = DEFAULT_OUTPUT_DIR / "ship_type_classifier_row_split_legacy.joblib"
+DEFAULT_METRICS_PATH = DEFAULT_OUTPUT_DIR / "ship_type_classifier_row_split_legacy_metrics.json"
 TARGET = "shiptype"
 RANDOM_STATE = 42
 
@@ -449,24 +449,28 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 def metrics_summary(bundle: dict[str, Any]) -> dict[str, Any]:
-    return {
+    best_metrics = {
+        key: value
+        for key, value in bundle["best_metrics"].items()
+        if key != "classification_report"
+    }
+    summary = {
         "model_name": bundle["model_name"],
         "display_name": bundle["display_name"],
         "trained_at": bundle["trained_at"],
         "train_rows": bundle["train_rows"],
         "target_classes": bundle["target_classes"],
         "feature_columns": bundle["feature_columns"],
-        "best_metrics": {
-            key: value
-            for key, value in bundle["best_metrics"].items()
-            if key != "classification_report"
-        },
+        "best_metrics": best_metrics,
         "all_metrics": [
             {key: value for key, value in item.items() if key != "classification_report"}
             for item in bundle["all_metrics"]
         ],
         "skipped_models": bundle["skipped_models"],
     }
+    if "evaluation" in bundle:
+        summary["evaluation"] = bundle["evaluation"]
+    return summary
 
 
 def load_or_train_model(

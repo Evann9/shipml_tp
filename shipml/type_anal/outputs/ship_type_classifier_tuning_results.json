@@ -1,0 +1,381 @@
+{
+  "created_at": "2026-04-25T10:23:25.470018+00:00",
+  "data_path": "C:\\work\\teampro\\shipml\\type_anal\\ais_ship_type_with_mmsi.csv",
+  "target": "shiptype",
+  "group_col": "mmsi",
+  "feature_columns": [
+    "navigationalstatus",
+    "sog",
+    "cog",
+    "heading",
+    "width",
+    "length",
+    "draught",
+    "cog_sin",
+    "cog_cos",
+    "heading_sin",
+    "heading_cos"
+  ],
+  "scoring": "macro_f1",
+  "best_params": {
+    "classifier__n_estimators": 700,
+    "classifier__min_samples_split": 5,
+    "classifier__min_samples_leaf": 2,
+    "classifier__max_features": "log2",
+    "classifier__max_depth": 48,
+    "classifier__class_weight": "balanced_subsample",
+    "classifier__bootstrap": true
+  },
+  "cv_best_score": 0.5020916369124377,
+  "cv_results_top": [
+    {
+      "rank_test_macro_f1": 1,
+      "mean_test_macro_f1": 0.5020916369124377,
+      "std_test_macro_f1": 0.07770343860997019,
+      "params": {
+        "classifier__n_estimators": 700,
+        "classifier__min_samples_split": 5,
+        "classifier__min_samples_leaf": 2,
+        "classifier__max_features": "log2",
+        "classifier__max_depth": 48,
+        "classifier__class_weight": "balanced_subsample",
+        "classifier__bootstrap": true
+      }
+    },
+    {
+      "rank_test_macro_f1": 2,
+      "mean_test_macro_f1": 0.4983674972784537,
+      "std_test_macro_f1": 0.0676793111714739,
+      "params": {
+        "classifier__n_estimators": 200,
+        "classifier__min_samples_split": 20,
+        "classifier__min_samples_leaf": 2,
+        "classifier__max_features": "log2",
+        "classifier__max_depth": 32,
+        "classifier__class_weight": "balanced",
+        "classifier__bootstrap": true
+      }
+    },
+    {
+      "rank_test_macro_f1": 3,
+      "mean_test_macro_f1": 0.49482095954830624,
+      "std_test_macro_f1": 0.02263123617962761,
+      "params": {
+        "classifier__n_estimators": 500,
+        "classifier__min_samples_split": 2,
+        "classifier__min_samples_leaf": 1,
+        "classifier__max_features": 0.5,
+        "classifier__max_depth": null,
+        "classifier__class_weight": "balanced",
+        "classifier__bootstrap": true
+      }
+    },
+    {
+      "rank_test_macro_f1": 4,
+      "mean_test_macro_f1": 0.4944962667659061,
+      "std_test_macro_f1": 0.06801406405783779,
+      "params": {
+        "classifier__n_estimators": 500,
+        "classifier__min_samples_split": 10,
+        "classifier__min_samples_leaf": 1,
+        "classifier__max_features": "log2",
+        "classifier__max_depth": 20,
+        "classifier__class_weight": "balanced_subsample",
+        "classifier__bootstrap": false
+      }
+    },
+    {
+      "rank_test_macro_f1": 5,
+      "mean_test_macro_f1": 0.4909915141970081,
+      "std_test_macro_f1": 0.07388787444514859,
+      "params": {
+        "classifier__n_estimators": 300,
+        "classifier__min_samples_split": 2,
+        "classifier__min_samples_leaf": 1,
+        "classifier__max_features": "sqrt",
+        "classifier__max_depth": 32,
+        "classifier__class_weight": "balanced",
+        "classifier__bootstrap": true
+      }
+    },
+    {
+      "rank_test_macro_f1": 6,
+      "mean_test_macro_f1": 0.4820546326572656,
+      "std_test_macro_f1": 0.0834264500379247,
+      "params": {
+        "classifier__n_estimators": 200,
+        "classifier__min_samples_split": 5,
+        "classifier__min_samples_leaf": 2,
+        "classifier__max_features": "sqrt",
+        "classifier__max_depth": 20,
+        "classifier__class_weight": "balanced",
+        "classifier__bootstrap": false
+      }
+    },
+    {
+      "rank_test_macro_f1": 7,
+      "mean_test_macro_f1": 0.4792885212488928,
+      "std_test_macro_f1": 0.01832598208145801,
+      "params": {
+        "classifier__n_estimators": 300,
+        "classifier__min_samples_split": 5,
+        "classifier__min_samples_leaf": 2,
+        "classifier__max_features": 0.5,
+        "classifier__max_depth": 12,
+        "classifier__class_weight": "balanced_subsample",
+        "classifier__bootstrap": true
+      }
+    },
+    {
+      "rank_test_macro_f1": 8,
+      "mean_test_macro_f1": 0.4778582469574686,
+      "std_test_macro_f1": 0.048019007165687994,
+      "params": {
+        "classifier__n_estimators": 200,
+        "classifier__min_samples_split": 20,
+        "classifier__min_samples_leaf": 8,
+        "classifier__max_features": 0.5,
+        "classifier__max_depth": 48,
+        "classifier__class_weight": "balanced",
+        "classifier__bootstrap": false
+      }
+    },
+    {
+      "rank_test_macro_f1": 9,
+      "mean_test_macro_f1": 0.47778579986158726,
+      "std_test_macro_f1": 0.08241457766505424,
+      "params": {
+        "classifier__n_estimators": 200,
+        "classifier__min_samples_split": 5,
+        "classifier__min_samples_leaf": 8,
+        "classifier__max_features": "log2",
+        "classifier__max_depth": 32,
+        "classifier__class_weight": "balanced",
+        "classifier__bootstrap": false
+      }
+    },
+    {
+      "rank_test_macro_f1": 10,
+      "mean_test_macro_f1": 0.4769122083690505,
+      "std_test_macro_f1": 0.08360274525785888,
+      "params": {
+        "classifier__n_estimators": 700,
+        "classifier__min_samples_split": 2,
+        "classifier__min_samples_leaf": 4,
+        "classifier__max_features": "log2",
+        "classifier__max_depth": 20,
+        "classifier__class_weight": "balanced",
+        "classifier__bootstrap": false
+      }
+    }
+  ],
+  "holdout_metrics": {
+    "model_name": "random_forest_group_tuned",
+    "display_name": "RandomForest Tuned (MMSI Group Split)",
+    "test_accuracy": 0.846251191043354,
+    "macro_f1": 0.6863244986516098,
+    "weighted_f1": 0.843389347169502,
+    "classification_report": {
+      "Cargo": {
+        "precision": 0.8583772838576003,
+        "recall": 0.918705743013381,
+        "f1-score": 0.8875174974134259,
+        "support": 39683.0
+      },
+      "Dredging": {
+        "precision": 0.38848920863309355,
+        "recall": 0.4585987261146497,
+        "f1-score": 0.4206426484907498,
+        "support": 471.0
+      },
+      "Fishing": {
+        "precision": 0.9713971397139713,
+        "recall": 0.9307800421644413,
+        "f1-score": 0.9506549434774807,
+        "support": 2846.0
+      },
+      "HSC": {
+        "precision": 1.0,
+        "recall": 0.9879578524836929,
+        "f1-score": 0.993942453306411,
+        "support": 1993.0
+      },
+      "Law enforcement": {
+        "precision": 0.8472222222222222,
+        "recall": 0.8243243243243243,
+        "f1-score": 0.8356164383561644,
+        "support": 74.0
+      },
+      "Military": {
+        "precision": 0.9754552652414885,
+        "recall": 0.767601246105919,
+        "f1-score": 0.8591352859135286,
+        "support": 1605.0
+      },
+      "Passenger": {
+        "precision": 0.927924791086351,
+        "recall": 0.7774212368728122,
+        "f1-score": 0.846031746031746,
+        "support": 3428.0
+      },
+      "Pilot": {
+        "precision": 0.8171589310829818,
+        "recall": 0.9965694682675815,
+        "f1-score": 0.8979907264296755,
+        "support": 583.0
+      },
+      "Pleasure": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 0.0
+      },
+      "SAR": {
+        "precision": 1.0,
+        "recall": 0.5172413793103449,
+        "f1-score": 0.6818181818181818,
+        "support": 58.0
+      },
+      "Tanker": {
+        "precision": 0.7656504538049802,
+        "recall": 0.654292343387471,
+        "f1-score": 0.7056048041178152,
+        "support": 15085.0
+      },
+      "Towing": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 160.0
+      },
+      "Tug": {
+        "precision": 0.7646249139710943,
+        "recall": 0.939932318104907,
+        "f1-score": 0.8432637571157495,
+        "support": 1182.0
+      },
+      "accuracy": 0.846251191043354,
+      "macro avg": {
+        "precision": 0.7166384776625987,
+        "recall": 0.6748788215499635,
+        "f1-score": 0.6863244986516098,
+        "support": 67168.0
+      },
+      "weighted avg": {
+        "precision": 0.8456529026023952,
+        "recall": 0.846251191043354,
+        "f1-score": 0.843389347169502,
+        "support": 67168.0
+      }
+    },
+    "top_confusion_pairs": [
+      {
+        "actual": "Tanker",
+        "predicted": "Cargo",
+        "count": 5142
+      },
+      {
+        "actual": "Cargo",
+        "predicted": "Tanker",
+        "count": 2842
+      },
+      {
+        "actual": "Passenger",
+        "predicted": "Cargo",
+        "count": 661
+      },
+      {
+        "actual": "Dredging",
+        "predicted": "Cargo",
+        "count": 165
+      },
+      {
+        "actual": "Cargo",
+        "predicted": "Dredging",
+        "count": 163
+      },
+      {
+        "actual": "Military",
+        "predicted": "Tug",
+        "count": 142
+      },
+      {
+        "actual": "Cargo",
+        "predicted": "Passenger",
+        "count": 113
+      },
+      {
+        "actual": "Towing",
+        "predicted": "Tug",
+        "count": 113
+      },
+      {
+        "actual": "Fishing",
+        "predicted": "Towing",
+        "count": 110
+      },
+      {
+        "actual": "Military",
+        "predicted": "Dredging",
+        "count": 100
+      },
+      {
+        "actual": "Dredging",
+        "predicted": "Tanker",
+        "count": 90
+      },
+      {
+        "actual": "Passenger",
+        "predicted": "Tanker",
+        "count": 88
+      }
+    ]
+  },
+  "split": {
+    "outer_split_method": "StratifiedGroupKFold(n_splits=5)",
+    "outer_requested_test_size": 0.2,
+    "outer_train_rows": 249627,
+    "outer_test_rows": 67168,
+    "outer_train_class_counts": {
+      "Cargo": 146593,
+      "Dredging": 4336,
+      "Fishing": 9447,
+      "HSC": 14,
+      "Law enforcement": 1034,
+      "Military": 3377,
+      "Passenger": 12370,
+      "Pilot": 2426,
+      "Pleasure": 46,
+      "SAR": 315,
+      "Sailing": 115,
+      "Tanker": 61977,
+      "Towing": 608,
+      "Tug": 6969
+    },
+    "outer_test_class_counts": {
+      "Cargo": 39683,
+      "Dredging": 471,
+      "Fishing": 2846,
+      "HSC": 1993,
+      "Law enforcement": 74,
+      "Military": 1605,
+      "Passenger": 3428,
+      "Pilot": 583,
+      "SAR": 58,
+      "Tanker": 15085,
+      "Towing": 160,
+      "Tug": 1182
+    },
+    "outer_leakage_check": {
+      "train_groups": 2190,
+      "test_groups": 544,
+      "overlap_groups": 0,
+      "overlap_ratio_of_test_groups": 0.0
+    },
+    "inner_cv_method": "StratifiedGroupKFold(n_splits=3)",
+    "inner_search_rows": 249627,
+    "inner_search_groups": 2190,
+    "group_col": "mmsi",
+    "group_col_used_as_feature": false
+  }
+}

@@ -1,0 +1,23 @@
+﻿feature,source_feature,importance
+length,length,0.24832758940600877
+draught,draught,0.21709957489138573
+width,width,0.16323976776807902
+sog,sog,0.14139279593514179
+cog_sin,cog_sin,0.028303022699065504
+cog_cos,cog_cos,0.027311424912475686
+cog,cog,0.02642341571348869
+heading_cos,heading_cos,0.025206268324755178
+heading_sin,heading_sin,0.023068488119135522
+heading,heading,0.022852860661931002
+navigationalstatus=Engaged in fishing,navigationalstatus,0.02085186009716151
+navigationalstatus=Under way using engine,navigationalstatus,0.01660674471565149
+navigationalstatus=Reserved for future amendment [HSC],navigationalstatus,0.01368302646777945
+navigationalstatus=Restricted maneuverability,navigationalstatus,0.008692994666058466
+navigationalstatus=Moored,navigationalstatus,0.008288431863331723
+navigationalstatus=Under way sailing,navigationalstatus,0.003700495481539539
+navigationalstatus=Unknown value,navigationalstatus,0.003055722042673707
+navigationalstatus=Constrained by her draught,navigationalstatus,0.0011810977974038791
+navigationalstatus=Power-driven vessel towing astern,navigationalstatus,0.0005957285457038345
+navigationalstatus=Power-driven vessel pushing ahead or towing alongside,navigationalstatus,8.751512538706048e-05
+navigationalstatus=At anchor,navigationalstatus,2.7744642905905186e-05
+navigationalstatus=Not under command,navigationalstatus,3.4301229366415578e-06

@@ -10,7 +10,7 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.svm import SVC
 
 
-DATA_PATH = "ais_data_with_trig.csv"
+DATA_PATH = "ais_ship_type_features.csv"
 TARGET = "shiptype"
 
 

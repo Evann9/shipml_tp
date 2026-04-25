@@ -10,7 +10,7 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from xgboost import XGBClassifier
 
 
-DATA_PATH = "ais_data_with_trig.csv"
+DATA_PATH = "ais_ship_type_features.csv"
 TARGET = "shiptype"
 
 

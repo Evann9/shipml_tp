@@ -1,0 +1,1395 @@
+{
+  "model_name": "random_forest",
+  "display_name": "RandomForest",
+  "trained_at": "2026-04-25T11:38:56.180871+00:00",
+  "train_rows": 316795,
+  "target_classes": [
+    "Cargo",
+    "Dredging",
+    "Fishing",
+    "HSC",
+    "Law enforcement",
+    "Military",
+    "Passenger",
+    "Pilot",
+    "Pleasure",
+    "SAR",
+    "Sailing",
+    "Tanker",
+    "Towing",
+    "Tug"
+  ],
+  "feature_columns": [
+    "navigationalstatus",
+    "sog",
+    "cog",
+    "heading",
+    "width",
+    "length",
+    "draught",
+    "cog_sin",
+    "cog_cos",
+    "heading_sin",
+    "heading_cos"
+  ],
+  "best_metrics": {
+    "model_name": "random_forest",
+    "display_name": "RandomForest",
+    "test_accuracy": 0.8453281324440209,
+    "macro_f1": 0.7377958881982408,
+    "weighted_f1": 0.8403436631819403,
+    "confusion_pairs": [
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Tanker",
+        "predicted": "Cargo",
+        "count": 5464,
+        "actual_support": 15085,
+        "actual_error_rate": 0.3622141199867418
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Cargo",
+        "predicted": "Tanker",
+        "count": 2383,
+        "actual_support": 39683,
+        "actual_error_rate": 0.06005090340952045
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Passenger",
+        "predicted": "Cargo",
+        "count": 936,
+        "actual_support": 3428,
+        "actual_error_rate": 0.27304550758459745
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Dredging",
+        "predicted": "Cargo",
+        "count": 183,
+        "actual_support": 471,
+        "actual_error_rate": 0.3885350318471338
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Towing",
+        "predicted": "Tug",
+        "count": 113,
+        "actual_support": 160,
+        "actual_error_rate": 0.70625
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Fishing",
+        "predicted": "Towing",
+        "count": 110,
+        "actual_support": 2846,
+        "actual_error_rate": 0.03865073787772312
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Military",
+        "predicted": "Passenger",
+        "count": 105,
+        "actual_support": 1605,
+        "actual_error_rate": 0.06542056074766354
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Military",
+        "predicted": "Cargo",
+        "count": 102,
+        "actual_support": 1605,
+        "actual_error_rate": 0.06355140186915888
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Military",
+        "predicted": "Dredging",
+        "count": 90,
+        "actual_support": 1605,
+        "actual_error_rate": 0.056074766355140186
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Dredging",
+        "predicted": "Tanker",
+        "count": 89,
+        "actual_support": 471,
+        "actual_error_rate": 0.18895966029723993
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Fishing",
+        "predicted": "Tug",
+        "count": 87,
+        "actual_support": 2846,
+        "actual_error_rate": 0.03056921995783556
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Passenger",
+        "predicted": "Tanker",
+        "count": 87,
+        "actual_support": 3428,
+        "actual_error_rate": 0.025379229871645273
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Military",
+        "predicted": "Tug",
+        "count": 85,
+        "actual_support": 1605,
+        "actual_error_rate": 0.0529595015576324
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Cargo",
+        "predicted": "Passenger",
+        "count": 77,
+        "actual_support": 39683,
+        "actual_error_rate": 0.0019403774916210972
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Cargo",
+        "predicted": "Dredging",
+        "count": 75,
+        "actual_support": 39683,
+        "actual_error_rate": 0.0018899780762543154
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Tanker",
+        "predicted": "Dredging",
+        "count": 67,
+        "actual_support": 15085,
+        "actual_error_rate": 0.004441498176997017
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Cargo",
+        "predicted": "Pilot",
+        "count": 57,
+        "actual_support": 39683,
+        "actual_error_rate": 0.0014363833379532798
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Towing",
+        "predicted": "Fishing",
+        "count": 47,
+        "actual_support": 160,
+        "actual_error_rate": 0.29375
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Tug",
+        "predicted": "Pilot",
+        "count": 41,
+        "actual_support": 1182,
+        "actual_error_rate": 0.03468697123519458
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Cargo",
+        "predicted": "Fishing",
+        "count": 29,
+        "actual_support": 39683,
+        "actual_error_rate": 0.0007307915228183353
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "SAR",
+        "predicted": "Pilot",
+        "count": 28,
+        "actual_support": 58,
+        "actual_error_rate": 0.4827586206896552
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "HSC",
+        "predicted": "Cargo",
+        "count": 20,
+        "actual_support": 1993,
+        "actual_error_rate": 0.010035122930255895
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Law enforcement",
+        "predicted": "Dredging",
+        "count": 19,
+        "actual_support": 74,
+        "actual_error_rate": 0.25675675675675674
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Tanker",
+        "predicted": "Fishing",
+        "count": 17,
+        "actual_support": 15085,
+        "actual_error_rate": 0.001126947298641034
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Tug",
+        "predicted": "Towing",
+        "count": 16,
+        "actual_support": 1182,
+        "actual_error_rate": 0.01353637901861252
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Passenger",
+        "predicted": "Military",
+        "count": 13,
+        "actual_support": 3428,
+        "actual_error_rate": 0.003792298716452742
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Cargo",
+        "predicted": "Towing",
+        "count": 12,
+        "actual_support": 39683,
+        "actual_error_rate": 0.0003023964922006905
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Tug",
+        "predicted": "Fishing",
+        "count": 11,
+        "actual_support": 1182,
+        "actual_error_rate": 0.009306260575296108
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Military",
+        "predicted": "Law enforcement",
+        "count": 9,
+        "actual_support": 1605,
+        "actual_error_rate": 0.005607476635514018
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "HSC",
+        "predicted": "Passenger",
+        "count": 4,
+        "actual_support": 1993,
+        "actual_error_rate": 0.002007024586051179
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Cargo",
+        "predicted": "Military",
+        "count": 3,
+        "actual_support": 39683,
+        "actual_error_rate": 7.559912305017262e-05
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Fishing",
+        "predicted": "Tanker",
+        "count": 3,
+        "actual_support": 2846,
+        "actual_error_rate": 0.0010541110330288123
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Pilot",
+        "predicted": "Dredging",
+        "count": 3,
+        "actual_support": 583,
+        "actual_error_rate": 0.005145797598627788
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Military",
+        "predicted": "Tanker",
+        "count": 2,
+        "actual_support": 1605,
+        "actual_error_rate": 0.0012461059190031153
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Tanker",
+        "predicted": "Military",
+        "count": 2,
+        "actual_support": 15085,
+        "actual_error_rate": 0.0001325820351342393
+      }
+    ],
+    "top_confusion_pairs": [
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Tanker",
+        "predicted": "Cargo",
+        "count": 5464,
+        "actual_support": 15085,
+        "actual_error_rate": 0.3622141199867418
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Cargo",
+        "predicted": "Tanker",
+        "count": 2383,
+        "actual_support": 39683,
+        "actual_error_rate": 0.06005090340952045
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Passenger",
+        "predicted": "Cargo",
+        "count": 936,
+        "actual_support": 3428,
+        "actual_error_rate": 0.27304550758459745
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Dredging",
+        "predicted": "Cargo",
+        "count": 183,
+        "actual_support": 471,
+        "actual_error_rate": 0.3885350318471338
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Towing",
+        "predicted": "Tug",
+        "count": 113,
+        "actual_support": 160,
+        "actual_error_rate": 0.70625
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Fishing",
+        "predicted": "Towing",
+        "count": 110,
+        "actual_support": 2846,
+        "actual_error_rate": 0.03865073787772312
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Military",
+        "predicted": "Passenger",
+        "count": 105,
+        "actual_support": 1605,
+        "actual_error_rate": 0.06542056074766354
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Military",
+        "predicted": "Cargo",
+        "count": 102,
+        "actual_support": 1605,
+        "actual_error_rate": 0.06355140186915888
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Military",
+        "predicted": "Dredging",
+        "count": 90,
+        "actual_support": 1605,
+        "actual_error_rate": 0.056074766355140186
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Dredging",
+        "predicted": "Tanker",
+        "count": 89,
+        "actual_support": 471,
+        "actual_error_rate": 0.18895966029723993
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Fishing",
+        "predicted": "Tug",
+        "count": 87,
+        "actual_support": 2846,
+        "actual_error_rate": 0.03056921995783556
+      },
+      {
+        "model_name": "random_forest",
+        "display_name": "RandomForest",
+        "actual": "Passenger",
+        "predicted": "Tanker",
+        "count": 87,
+        "actual_support": 3428,
+        "actual_error_rate": 0.025379229871645273
+      }
+    ]
+  },
+  "all_metrics": [
+    {
+      "model_name": "random_forest",
+      "display_name": "RandomForest",
+      "test_accuracy": 0.8453281324440209,
+      "macro_f1": 0.7377958881982408,
+      "weighted_f1": 0.8403436631819403,
+      "confusion_pairs": [
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Tanker",
+          "predicted": "Cargo",
+          "count": 5464,
+          "actual_support": 15085,
+          "actual_error_rate": 0.3622141199867418
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Cargo",
+          "predicted": "Tanker",
+          "count": 2383,
+          "actual_support": 39683,
+          "actual_error_rate": 0.06005090340952045
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Passenger",
+          "predicted": "Cargo",
+          "count": 936,
+          "actual_support": 3428,
+          "actual_error_rate": 0.27304550758459745
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Dredging",
+          "predicted": "Cargo",
+          "count": 183,
+          "actual_support": 471,
+          "actual_error_rate": 0.3885350318471338
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Towing",
+          "predicted": "Tug",
+          "count": 113,
+          "actual_support": 160,
+          "actual_error_rate": 0.70625
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Fishing",
+          "predicted": "Towing",
+          "count": 110,
+          "actual_support": 2846,
+          "actual_error_rate": 0.03865073787772312
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Military",
+          "predicted": "Passenger",
+          "count": 105,
+          "actual_support": 1605,
+          "actual_error_rate": 0.06542056074766354
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Military",
+          "predicted": "Cargo",
+          "count": 102,
+          "actual_support": 1605,
+          "actual_error_rate": 0.06355140186915888
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Military",
+          "predicted": "Dredging",
+          "count": 90,
+          "actual_support": 1605,
+          "actual_error_rate": 0.056074766355140186
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Dredging",
+          "predicted": "Tanker",
+          "count": 89,
+          "actual_support": 471,
+          "actual_error_rate": 0.18895966029723993
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Fishing",
+          "predicted": "Tug",
+          "count": 87,
+          "actual_support": 2846,
+          "actual_error_rate": 0.03056921995783556
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Passenger",
+          "predicted": "Tanker",
+          "count": 87,
+          "actual_support": 3428,
+          "actual_error_rate": 0.025379229871645273
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Military",
+          "predicted": "Tug",
+          "count": 85,
+          "actual_support": 1605,
+          "actual_error_rate": 0.0529595015576324
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Cargo",
+          "predicted": "Passenger",
+          "count": 77,
+          "actual_support": 39683,
+          "actual_error_rate": 0.0019403774916210972
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Cargo",
+          "predicted": "Dredging",
+          "count": 75,
+          "actual_support": 39683,
+          "actual_error_rate": 0.0018899780762543154
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Tanker",
+          "predicted": "Dredging",
+          "count": 67,
+          "actual_support": 15085,
+          "actual_error_rate": 0.004441498176997017
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Cargo",
+          "predicted": "Pilot",
+          "count": 57,
+          "actual_support": 39683,
+          "actual_error_rate": 0.0014363833379532798
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Towing",
+          "predicted": "Fishing",
+          "count": 47,
+          "actual_support": 160,
+          "actual_error_rate": 0.29375
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Tug",
+          "predicted": "Pilot",
+          "count": 41,
+          "actual_support": 1182,
+          "actual_error_rate": 0.03468697123519458
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Cargo",
+          "predicted": "Fishing",
+          "count": 29,
+          "actual_support": 39683,
+          "actual_error_rate": 0.0007307915228183353
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "SAR",
+          "predicted": "Pilot",
+          "count": 28,
+          "actual_support": 58,
+          "actual_error_rate": 0.4827586206896552
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "HSC",
+          "predicted": "Cargo",
+          "count": 20,
+          "actual_support": 1993,
+          "actual_error_rate": 0.010035122930255895
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Law enforcement",
+          "predicted": "Dredging",
+          "count": 19,
+          "actual_support": 74,
+          "actual_error_rate": 0.25675675675675674
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Tanker",
+          "predicted": "Fishing",
+          "count": 17,
+          "actual_support": 15085,
+          "actual_error_rate": 0.001126947298641034
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Tug",
+          "predicted": "Towing",
+          "count": 16,
+          "actual_support": 1182,
+          "actual_error_rate": 0.01353637901861252
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Passenger",
+          "predicted": "Military",
+          "count": 13,
+          "actual_support": 3428,
+          "actual_error_rate": 0.003792298716452742
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Cargo",
+          "predicted": "Towing",
+          "count": 12,
+          "actual_support": 39683,
+          "actual_error_rate": 0.0003023964922006905
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Tug",
+          "predicted": "Fishing",
+          "count": 11,
+          "actual_support": 1182,
+          "actual_error_rate": 0.009306260575296108
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Military",
+          "predicted": "Law enforcement",
+          "count": 9,
+          "actual_support": 1605,
+          "actual_error_rate": 0.005607476635514018
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "HSC",
+          "predicted": "Passenger",
+          "count": 4,
+          "actual_support": 1993,
+          "actual_error_rate": 0.002007024586051179
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Cargo",
+          "predicted": "Military",
+          "count": 3,
+          "actual_support": 39683,
+          "actual_error_rate": 7.559912305017262e-05
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Fishing",
+          "predicted": "Tanker",
+          "count": 3,
+          "actual_support": 2846,
+          "actual_error_rate": 0.0010541110330288123
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Pilot",
+          "predicted": "Dredging",
+          "count": 3,
+          "actual_support": 583,
+          "actual_error_rate": 0.005145797598627788
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Military",
+          "predicted": "Tanker",
+          "count": 2,
+          "actual_support": 1605,
+          "actual_error_rate": 0.0012461059190031153
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Tanker",
+          "predicted": "Military",
+          "count": 2,
+          "actual_support": 15085,
+          "actual_error_rate": 0.0001325820351342393
+        }
+      ],
+      "top_confusion_pairs": [
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Tanker",
+          "predicted": "Cargo",
+          "count": 5464,
+          "actual_support": 15085,
+          "actual_error_rate": 0.3622141199867418
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Cargo",
+          "predicted": "Tanker",
+          "count": 2383,
+          "actual_support": 39683,
+          "actual_error_rate": 0.06005090340952045
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Passenger",
+          "predicted": "Cargo",
+          "count": 936,
+          "actual_support": 3428,
+          "actual_error_rate": 0.27304550758459745
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Dredging",
+          "predicted": "Cargo",
+          "count": 183,
+          "actual_support": 471,
+          "actual_error_rate": 0.3885350318471338
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Towing",
+          "predicted": "Tug",
+          "count": 113,
+          "actual_support": 160,
+          "actual_error_rate": 0.70625
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Fishing",
+          "predicted": "Towing",
+          "count": 110,
+          "actual_support": 2846,
+          "actual_error_rate": 0.03865073787772312
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Military",
+          "predicted": "Passenger",
+          "count": 105,
+          "actual_support": 1605,
+          "actual_error_rate": 0.06542056074766354
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Military",
+          "predicted": "Cargo",
+          "count": 102,
+          "actual_support": 1605,
+          "actual_error_rate": 0.06355140186915888
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Military",
+          "predicted": "Dredging",
+          "count": 90,
+          "actual_support": 1605,
+          "actual_error_rate": 0.056074766355140186
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Dredging",
+          "predicted": "Tanker",
+          "count": 89,
+          "actual_support": 471,
+          "actual_error_rate": 0.18895966029723993
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Fishing",
+          "predicted": "Tug",
+          "count": 87,
+          "actual_support": 2846,
+          "actual_error_rate": 0.03056921995783556
+        },
+        {
+          "model_name": "random_forest",
+          "display_name": "RandomForest",
+          "actual": "Passenger",
+          "predicted": "Tanker",
+          "count": 87,
+          "actual_support": 3428,
+          "actual_error_rate": 0.025379229871645273
+        }
+      ]
+    },
+    {
+      "model_name": "xgboost",
+      "display_name": "XGBoost",
+      "test_accuracy": 0.8022123630300143,
+      "macro_f1": 0.53034593354418,
+      "weighted_f1": 0.7824588240902521,
+      "confusion_pairs": [
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Tanker",
+          "predicted": "Cargo",
+          "count": 4294,
+          "actual_support": 15085,
+          "actual_error_rate": 0.2846536294332118
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Cargo",
+          "predicted": "Tanker",
+          "count": 2656,
+          "actual_support": 39683,
+          "actual_error_rate": 0.06693042360708616
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Passenger",
+          "predicted": "Cargo",
+          "count": 2297,
+          "actual_support": 3428,
+          "actual_error_rate": 0.6700700116686115
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "HSC",
+          "predicted": "Cargo",
+          "count": 1836,
+          "actual_support": 1993,
+          "actual_error_rate": 0.9212242849974912
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Cargo",
+          "predicted": "Dredging",
+          "count": 329,
+          "actual_support": 39683,
+          "actual_error_rate": 0.008290703827835597
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Dredging",
+          "predicted": "Cargo",
+          "count": 319,
+          "actual_support": 471,
+          "actual_error_rate": 0.6772823779193206
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Cargo",
+          "predicted": "Passenger",
+          "count": 294,
+          "actual_support": 39683,
+          "actual_error_rate": 0.007408714058916917
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Passenger",
+          "predicted": "Tanker",
+          "count": 217,
+          "actual_support": 3428,
+          "actual_error_rate": 0.0633022170361727
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Military",
+          "predicted": "Tanker",
+          "count": 157,
+          "actual_support": 1605,
+          "actual_error_rate": 0.09781931464174455
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Towing",
+          "predicted": "Tug",
+          "count": 113,
+          "actual_support": 160,
+          "actual_error_rate": 0.70625
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "HSC",
+          "predicted": "Passenger",
+          "count": 110,
+          "actual_support": 1993,
+          "actual_error_rate": 0.05519317611640743
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Fishing",
+          "predicted": "Tug",
+          "count": 87,
+          "actual_support": 2846,
+          "actual_error_rate": 0.03056921995783556
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Military",
+          "predicted": "Sailing",
+          "count": 87,
+          "actual_support": 1605,
+          "actual_error_rate": 0.05420560747663551
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Tanker",
+          "predicted": "Dredging",
+          "count": 70,
+          "actual_support": 15085,
+          "actual_error_rate": 0.004640371229698376
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Pilot",
+          "predicted": "Dredging",
+          "count": 59,
+          "actual_support": 583,
+          "actual_error_rate": 0.10120068610634649
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Towing",
+          "predicted": "Fishing",
+          "count": 47,
+          "actual_support": 160,
+          "actual_error_rate": 0.29375
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Cargo",
+          "predicted": "Fishing",
+          "count": 43,
+          "actual_support": 39683,
+          "actual_error_rate": 0.0010835874303858075
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Tug",
+          "predicted": "Dredging",
+          "count": 31,
+          "actual_support": 1182,
+          "actual_error_rate": 0.02622673434856176
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Cargo",
+          "predicted": "Pilot",
+          "count": 29,
+          "actual_support": 39683,
+          "actual_error_rate": 0.0007307915228183353
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "SAR",
+          "predicted": "Pilot",
+          "count": 29,
+          "actual_support": 58,
+          "actual_error_rate": 0.5
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Tug",
+          "predicted": "Towing",
+          "count": 28,
+          "actual_support": 1182,
+          "actual_error_rate": 0.023688663282571912
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Fishing",
+          "predicted": "Cargo",
+          "count": 27,
+          "actual_support": 2846,
+          "actual_error_rate": 0.009486999297259312
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Tug",
+          "predicted": "Fishing",
+          "count": 27,
+          "actual_support": 1182,
+          "actual_error_rate": 0.02284263959390863
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Cargo",
+          "predicted": "Towing",
+          "count": 26,
+          "actual_support": 39683,
+          "actual_error_rate": 0.0006551923997681627
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Passenger",
+          "predicted": "Military",
+          "count": 21,
+          "actual_support": 3428,
+          "actual_error_rate": 0.006126021003500583
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Law enforcement",
+          "predicted": "Pilot",
+          "count": 13,
+          "actual_support": 74,
+          "actual_error_rate": 0.17567567567567569
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Military",
+          "predicted": "Cargo",
+          "count": 11,
+          "actual_support": 1605,
+          "actual_error_rate": 0.006853582554517134
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Military",
+          "predicted": "Tug",
+          "count": 8,
+          "actual_support": 1605,
+          "actual_error_rate": 0.004984423676012461
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Military",
+          "predicted": "Law enforcement",
+          "count": 7,
+          "actual_support": 1605,
+          "actual_error_rate": 0.004361370716510903
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Pilot",
+          "predicted": "Towing",
+          "count": 5,
+          "actual_support": 583,
+          "actual_error_rate": 0.008576329331046312
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Fishing",
+          "predicted": "Towing",
+          "count": 2,
+          "actual_support": 2846,
+          "actual_error_rate": 0.0007027406886858749
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Military",
+          "predicted": "Towing",
+          "count": 2,
+          "actual_support": 1605,
+          "actual_error_rate": 0.0012461059190031153
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Law enforcement",
+          "predicted": "Towing",
+          "count": 1,
+          "actual_support": 74,
+          "actual_error_rate": 0.013513513513513514
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "SAR",
+          "predicted": "Pleasure",
+          "count": 1,
+          "actual_support": 58,
+          "actual_error_rate": 0.017241379310344827
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Tug",
+          "predicted": "Cargo",
+          "count": 1,
+          "actual_support": 1182,
+          "actual_error_rate": 0.0008460236886632825
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Tug",
+          "predicted": "Pilot",
+          "count": 1,
+          "actual_support": 1182,
+          "actual_error_rate": 0.0008460236886632825
+        }
+      ],
+      "top_confusion_pairs": [
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Tanker",
+          "predicted": "Cargo",
+          "count": 4294,
+          "actual_support": 15085,
+          "actual_error_rate": 0.2846536294332118
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Cargo",
+          "predicted": "Tanker",
+          "count": 2656,
+          "actual_support": 39683,
+          "actual_error_rate": 0.06693042360708616
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Passenger",
+          "predicted": "Cargo",
+          "count": 2297,
+          "actual_support": 3428,
+          "actual_error_rate": 0.6700700116686115
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "HSC",
+          "predicted": "Cargo",
+          "count": 1836,
+          "actual_support": 1993,
+          "actual_error_rate": 0.9212242849974912
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Cargo",
+          "predicted": "Dredging",
+          "count": 329,
+          "actual_support": 39683,
+          "actual_error_rate": 0.008290703827835597
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Dredging",
+          "predicted": "Cargo",
+          "count": 319,
+          "actual_support": 471,
+          "actual_error_rate": 0.6772823779193206
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Cargo",
+          "predicted": "Passenger",
+          "count": 294,
+          "actual_support": 39683,
+          "actual_error_rate": 0.007408714058916917
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Passenger",
+          "predicted": "Tanker",
+          "count": 217,
+          "actual_support": 3428,
+          "actual_error_rate": 0.0633022170361727
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Military",
+          "predicted": "Tanker",
+          "count": 157,
+          "actual_support": 1605,
+          "actual_error_rate": 0.09781931464174455
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Towing",
+          "predicted": "Tug",
+          "count": 113,
+          "actual_support": 160,
+          "actual_error_rate": 0.70625
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "HSC",
+          "predicted": "Passenger",
+          "count": 110,
+          "actual_support": 1993,
+          "actual_error_rate": 0.05519317611640743
+        },
+        {
+          "model_name": "xgboost",
+          "display_name": "XGBoost",
+          "actual": "Fishing",
+          "predicted": "Tug",
+          "count": 87,
+          "actual_support": 2846,
+          "actual_error_rate": 0.03056921995783556
+        }
+      ]
+    }
+  ],
+  "skipped_models": {},
+  "evaluation": {
+    "method": "mmsi_group_split",
+    "split": {
+      "method": "StratifiedGroupKFold(n_splits=5)",
+      "requested_test_size": 0.2,
+      "train_rows": 249627,
+      "test_rows": 67168,
+      "train_class_counts": {
+        "Cargo": 146593,
+        "Dredging": 4336,
+        "Fishing": 9447,
+        "HSC": 14,
+        "Law enforcement": 1034,
+        "Military": 3377,
+        "Passenger": 12370,
+        "Pilot": 2426,
+        "Pleasure": 46,
+        "SAR": 315,
+        "Sailing": 115,
+        "Tanker": 61977,
+        "Towing": 608,
+        "Tug": 6969
+      },
+      "test_class_counts": {
+        "Cargo": 39683,
+        "Dredging": 471,
+        "Fishing": 2846,
+        "HSC": 1993,
+        "Law enforcement": 74,
+        "Military": 1605,
+        "Passenger": 3428,
+        "Pilot": 583,
+        "SAR": 58,
+        "Tanker": 15085,
+        "Towing": 160,
+        "Tug": 1182
+      },
+      "leakage_check": {
+        "train_groups": 2190,
+        "test_groups": 544,
+        "overlap_groups": 0,
+        "overlap_ratio_of_test_groups": 0.0
+      }
+    },
+    "note": "The selected model is refit on all rows for deployment after MMSI group-split evaluation. MMSI is not used as a feature."
+  }
+}

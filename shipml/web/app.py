@@ -15,14 +15,26 @@ from flask import Flask, jsonify, render_template, request
 WEB_DIR = Path(__file__).resolve().parent
 SHIPML_DIR = WEB_DIR.parent
 ROUTE_OUTPUTS = SHIPML_DIR / "route_anal" / "outputs"
+TYPE_OUTPUTS = SHIPML_DIR / "type_anal" / "outputs"
 DEFAULT_TYPED_PREDICTIONS = ROUTE_OUTPUTS / "route_predictions_with_types.csv"
 DEFAULT_RAW_PREDICTIONS = ROUTE_OUTPUTS / "route_predictions.csv"
 DEFAULT_ROUTE_CENTERS = ROUTE_OUTPUTS / "route_centers_long.csv"
 DEFAULT_AIS_POINTS = SHIPML_DIR / "route_anal" / "ais_data_10day.csv"
 DEFAULT_TYPE_SUMMARY = ROUTE_OUTPUTS / "route_type_summary.json"
-DEFAULT_MODEL_METRICS = SHIPML_DIR / "type_anal" / "outputs" / "best_ship_type_model_metrics.json"
+DEFAULT_FUTURE_PREDICTIONS = ROUTE_OUTPUTS / "future_position_forecast.csv"
+DEFAULT_FUTURE_METRICS = ROUTE_OUTPUTS / "future_position_regressor_metrics.json"
+DEFAULT_CLASS_METRICS = TYPE_OUTPUTS / "ship_type_classifier_class_metrics.csv"
+DEFAULT_CONFUSION_PAIRS = TYPE_OUTPUTS / "ship_type_classifier_confusion_pairs.csv"
+DEFAULT_TUNED_MODEL_METRICS = (
+    TYPE_OUTPUTS / "ship_type_classifier_tuned_group_split_metrics.json"
+)
+DEFAULT_GROUP_MODEL_METRICS = (
+    TYPE_OUTPUTS / "ship_type_classifier_group_split_metrics.json"
+)
+DEFAULT_MODEL_METRICS = TYPE_OUTPUTS / "ship_type_classifier_row_split_legacy_metrics.json"
 ROUTE_CENTER_POINTS = 24
 MAX_TRACK_POINTS_PER_SHIP = 90
+MAX_ROUTE_PATTERN_POINTS = 140
 
 
 def create_app() -> Flask:
@@ -61,7 +73,19 @@ def create_app() -> Flask:
                 "routes": routes,
                 "bounds": dataframe_bounds(predictions, centers),
                 "model": load_model_summary(),
+                "futureModel": load_future_model_summary(),
                 "totalShips": int(len(predictions)),
+            }
+        )
+
+    @app.get("/api/model-performance")
+    def model_performance() -> Any:
+        class_metrics = load_class_metrics()
+        confusion_pairs = load_confusion_pairs()
+        return jsonify(
+            {
+                "classMetrics": dataframe_records(class_metrics),
+                "confusionPairs": dataframe_records(confusion_pairs),
             }
         )
 
@@ -71,6 +95,7 @@ def create_app() -> Flask:
         route_label = request.args.get("route", "").strip()
         anomaly_only = request.args.get("anomaly", "").lower() in {"1", "true", "yes"}
         show_tracks = request.args.get("tracks", "").lower() in {"1", "true", "yes"}
+        show_future = request.args.get("future", "").lower() in {"1", "true", "yes"}
         max_ships = parse_int(request.args.get("max_ships"), default=800)
 
         predictions = filter_predictions(
@@ -79,11 +104,15 @@ def create_app() -> Flask:
             route_label=route_label,
             anomaly_only=anomaly_only,
         )
-        centers = load_route_centers()
-
         route_counts = summarize_routes(predictions)
-        route_labels = set(route_counts["route_label"].astype(str)) if not route_counts.empty else set()
-        route_features = route_center_features(centers, route_counts, route_labels)
+        centers = load_route_centers()
+        ais_points = load_ais_points()
+        route_features = representative_route_track_features(
+            predictions,
+            ais_points,
+            route_counts,
+            centers,
+        )
 
         ships = predictions
         if max_ships > 0 and len(ships) > max_ships:
@@ -95,9 +124,13 @@ def create_app() -> Flask:
         track_features: list[dict[str, Any]] = []
         latest_points: dict[str, dict[str, Any]] = {}
         if show_tracks:
-            track_features, latest_points = ship_actual_track_features(ships, load_ais_points())
+            track_features, latest_points = ship_actual_track_features(ships, ais_points)
             if not track_features:
                 track_features = ship_straight_track_features(ships)
+
+        future_features: list[dict[str, Any]] = []
+        if show_future:
+            future_features = future_prediction_features(ships, load_future_predictions())
 
         return jsonify(
             {
@@ -106,11 +139,13 @@ def create_app() -> Flask:
                     "route": route_label or "__all__",
                     "anomalyOnly": anomaly_only,
                     "showTracks": show_tracks,
+                    "showFuture": show_future,
                 },
                 "shipCount": int(len(predictions)),
                 "shownShipCount": int(len(ships)),
                 "routes": feature_collection(route_features),
                 "shipTracks": feature_collection(track_features),
+                "futureTracks": feature_collection(future_features),
                 "ships": feature_collection(ship_point_features(ships, latest_points)),
                 "routeSummary": route_counts.to_dict("records"),
                 "bounds": dataframe_bounds(ships, centers),
@@ -156,6 +191,13 @@ def load_predictions() -> pd.DataFrame:
         "predicted_route_probability",
         "predicted_shiptype_probability",
         "anomaly_score",
+        "route_distance",
+        "route_distance_threshold",
+        "route_distance_ratio",
+        "predicted_anchorage_lat",
+        "predicted_anchorage_lon",
+        "anchorage_distance_km",
+        "anchorage_confidence",
         "mean_sog",
         "width",
         "length",
@@ -227,6 +269,8 @@ def load_ais_points() -> pd.DataFrame:
 def load_model_summary() -> dict[str, Any]:
     for path in [
         data_path("ROUTE_TYPE_SUMMARY_JSON", DEFAULT_TYPE_SUMMARY),
+        data_path("TYPE_TUNED_MODEL_METRICS_JSON", DEFAULT_TUNED_MODEL_METRICS),
+        data_path("TYPE_GROUP_MODEL_METRICS_JSON", DEFAULT_GROUP_MODEL_METRICS),
         data_path("TYPE_MODEL_METRICS_JSON", DEFAULT_MODEL_METRICS),
     ]:
         if path.exists():
@@ -245,13 +289,116 @@ def load_model_summary() -> dict[str, Any]:
     }
 
 
+def load_future_model_summary() -> dict[str, Any]:
+    path = data_path("FUTURE_POSITION_METRICS_JSON", DEFAULT_FUTURE_METRICS)
+    if not path.exists():
+        return {
+            "available": False,
+            "displayName": "Not trained",
+            "meanErrorKm": None,
+            "horizons": [],
+        }
+
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {
+            "available": False,
+            "displayName": "Invalid metrics",
+            "meanErrorKm": None,
+            "horizons": [],
+        }
+
+    errors = data.get("holdout_mean_error_km", {})
+    numeric_errors = [
+        float(value)
+        for value in errors.values()
+        if isinstance(value, (int, float)) and math.isfinite(float(value))
+    ]
+    return {
+        "available": True,
+        "displayName": data.get("display_name") or data.get("model_name") or "Future position model",
+        "meanErrorKm": sum(numeric_errors) / len(numeric_errors) if numeric_errors else None,
+        "horizons": data.get("horizons_hours", []),
+        "evaluationMethod": data.get("evaluation_method"),
+    }
+
+
+def load_class_metrics() -> pd.DataFrame:
+    path = data_path("TYPE_CLASS_METRICS_CSV", DEFAULT_CLASS_METRICS)
+    if not path.exists():
+        return pd.DataFrame(
+            columns=["shiptype", "precision", "recall", "f1_score", "support"]
+        )
+    df = read_csv(path)
+    for col in ["precision", "recall", "f1_score", "support"]:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+    if "shiptype" in df.columns:
+        df["shiptype"] = df["shiptype"].astype(str)
+    return df.sort_values(["support", "f1_score"], ascending=[False, False], ignore_index=True)
+
+
+def load_confusion_pairs() -> pd.DataFrame:
+    path = data_path("TYPE_CONFUSION_PAIRS_CSV", DEFAULT_CONFUSION_PAIRS)
+    if not path.exists():
+        return pd.DataFrame(
+            columns=["actual", "predicted", "count", "actual_support", "actual_error_rate"]
+        )
+    df = read_csv(path)
+    for col in ["count", "actual_support", "actual_error_rate"]:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+    for col in ["actual", "predicted"]:
+        if col in df.columns:
+            df[col] = df[col].astype(str)
+    return df.sort_values("count", ascending=False, ignore_index=True)
+
+
+def load_future_predictions() -> pd.DataFrame:
+    path = data_path("FUTURE_POSITION_PREDICTIONS_CSV", DEFAULT_FUTURE_PREDICTIONS)
+    if not path.exists():
+        return pd.DataFrame()
+
+    df = read_csv(path)
+    df.columns = df.columns.astype(str).str.strip()
+    if "MMSI" not in df.columns and "mmsi" in df.columns:
+        df = df.rename(columns={"mmsi": "MMSI"})
+    if "MMSI" not in df.columns:
+        return pd.DataFrame()
+
+    df["MMSI"] = df["MMSI"].astype(str)
+    numeric_cols = [
+        col
+        for col in df.columns
+        if col.startswith(("pred_lat_", "pred_lon_", "start_lat", "start_lon", "mean_error"))
+    ]
+    for col in numeric_cols:
+        df[col] = pd.to_numeric(df[col], errors="coerce")
+    return df
+
+
 def compact_model_summary(data: dict[str, Any]) -> dict[str, Any]:
     best = data.get("best_metrics", {})
+    evaluation = data.get("evaluation", {})
+    split = evaluation.get("split", {}) if isinstance(evaluation, dict) else {}
+    leakage = (
+        split.get("leakage_check")
+        or split.get("outer_leakage_check")
+        or {}
+        if isinstance(split, dict)
+        else {}
+    )
     return {
         "displayName": data.get("display_name") or data.get("displayName") or "Unknown",
         "modelName": data.get("model_name") or data.get("modelName") or "unknown",
         "accuracy": best.get("test_accuracy"),
         "macroF1": best.get("macro_f1"),
+        "weightedF1": best.get("weighted_f1"),
+        "evaluationMethod": evaluation.get("method") if isinstance(evaluation, dict) else None,
+        "groupOverlap": leakage.get("overlap_groups"),
+        "trainRows": split.get("train_rows") or split.get("outer_train_rows"),
+        "testRows": split.get("test_rows") or split.get("outer_test_rows"),
         "trainedAt": data.get("trained_at"),
     }
 
@@ -334,6 +481,168 @@ def route_center_features(
             }
         )
     return features
+
+
+def representative_route_track_features(
+    predictions: pd.DataFrame,
+    ais_points: pd.DataFrame,
+    route_counts: pd.DataFrame,
+    fallback_centers: pd.DataFrame,
+) -> list[dict[str, Any]]:
+    if predictions.empty or route_counts.empty:
+        return []
+
+    count_props = {
+        str(row.route_label): {
+            "vessel_count": int(row.vessel_count),
+            "anomaly_count": int(row.anomaly_count),
+            "avg_route_probability": clean_number(row.avg_route_probability),
+            "avg_shiptype_probability": clean_number(row.avg_shiptype_probability),
+        }
+        for row in route_counts.itertuples(index=False)
+    }
+
+    features: list[dict[str, Any]] = []
+    for route_label, route_predictions in predictions.groupby("predicted_route", sort=True):
+        route_label = str(route_label)
+        representative_mmsi = choose_representative_mmsi(route_predictions, ais_points)
+        coords: list[list[float]] = []
+
+        if representative_mmsi:
+            track = ais_points.loc[ais_points["MMSI"] == representative_mmsi]
+            coords = track_coords(track, MAX_ROUTE_PATTERN_POINTS)
+
+        center_source = "representative_actual_track"
+        if len(coords) < 2:
+            coords = fallback_route_coords(fallback_centers, route_label)
+            center_source = "fallback_cluster_center"
+
+        if len(coords) < 2:
+            continue
+
+        geometry = route_geometry(coords)
+        props = {
+            "route_label": route_label,
+            "center_source": center_source,
+            "representative_mmsi": representative_mmsi,
+            "route_point_count": len(coords),
+        }
+        props.update(count_props.get(route_label, {}))
+        features.append(
+            {
+                "type": "Feature",
+                "geometry": geometry,
+                "properties": props,
+            }
+        )
+    return features
+
+
+def choose_representative_mmsi(
+    route_predictions: pd.DataFrame,
+    ais_points: pd.DataFrame,
+) -> str | None:
+    if route_predictions.empty or ais_points.empty:
+        return None
+
+    track_counts = (
+        ais_points.loc[ais_points["MMSI"].isin(route_predictions["MMSI"].astype(str))]
+        .groupby("MMSI")
+        .size()
+    )
+    valid_mmsi = set(track_counts.loc[track_counts >= 2].index.astype(str))
+    candidates = route_predictions.loc[route_predictions["MMSI"].astype(str).isin(valid_mmsi)].copy()
+    if candidates.empty:
+        return None
+
+    score = pd.Series(0.0, index=candidates.index)
+    feature_cols = [
+        "start_lat",
+        "start_lon",
+        "end_lat",
+        "end_lon",
+        "duration_hours",
+        "total_distance_km",
+        "mean_sog",
+    ]
+    for col in feature_cols:
+        if col not in candidates.columns:
+            continue
+        values = pd.to_numeric(candidates[col], errors="coerce")
+        if values.notna().sum() < 2:
+            continue
+        median = values.median()
+        scale = values.quantile(0.75) - values.quantile(0.25)
+        if pd.isna(scale) or scale <= 0:
+            scale = values.std()
+        if pd.isna(scale) or scale <= 0:
+            scale = 1.0
+        score = score.add((values - median).abs().fillna(scale * 10) / scale, fill_value=0.0)
+
+    if "predicted_route_probability" in candidates.columns:
+        probability = pd.to_numeric(candidates["predicted_route_probability"], errors="coerce").fillna(0.0)
+        score = score - probability
+
+    best_idx = score.sort_values(kind="mergesort").index[0]
+    return str(candidates.loc[best_idx, "MMSI"])
+
+
+def track_coords(points: pd.DataFrame, max_points: int) -> list[list[float]]:
+    if points.empty:
+        return []
+    sorted_points = points.sort_values("Timestamp", kind="mergesort")
+    coords = [
+        [float(row.Longitude), float(row.Latitude)]
+        for row in sorted_points.itertuples(index=False)
+        if valid_lonlat(row.Longitude, row.Latitude)
+    ]
+    return downsample_coords(dedupe_coords(coords), max_points)
+
+
+def route_geometry(coords: list[list[float]]) -> dict[str, Any]:
+    segments = split_long_segments(coords, max_segment_km=80.0)
+    if len(segments) == 1:
+        return {"type": "LineString", "coordinates": segments[0]}
+    return {"type": "MultiLineString", "coordinates": segments}
+
+
+def split_long_segments(
+    coords: list[list[float]],
+    max_segment_km: float,
+) -> list[list[list[float]]]:
+    segments: list[list[list[float]]] = []
+    current: list[list[float]] = []
+
+    for coord in coords:
+        if not current:
+            current = [coord]
+            continue
+
+        distance = lonlat_distance_km(current[-1], coord)
+        if distance > max_segment_km:
+            if len(current) >= 2:
+                segments.append(current)
+            current = [coord]
+        else:
+            current.append(coord)
+
+    if len(current) >= 2:
+        segments.append(current)
+    return segments or [coords]
+
+
+def lonlat_distance_km(a: list[float], b: list[float]) -> float:
+    lon1, lat1 = a
+    lon2, lat2 = b
+    lat1_rad = math.radians(lat1)
+    lat2_rad = math.radians(lat2)
+    dlat = math.radians(lat2 - lat1)
+    dlon = math.radians(lon2 - lon1)
+    h = (
+        math.sin(dlat / 2.0) ** 2
+        + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(dlon / 2.0) ** 2
+    )
+    return 6371.0088 * 2.0 * math.asin(min(1.0, math.sqrt(h)))
 
 
 def selected_route_center_features(
@@ -518,6 +827,65 @@ def ship_point_features(
     return features
 
 
+def future_prediction_features(
+    predictions: pd.DataFrame,
+    future_predictions: pd.DataFrame,
+) -> list[dict[str, Any]]:
+    if predictions.empty or future_predictions.empty:
+        return []
+
+    prediction_by_mmsi = {
+        str(row.MMSI): row
+        for row in predictions.itertuples(index=False)
+    }
+    subset = future_predictions.loc[future_predictions["MMSI"].isin(set(prediction_by_mmsi))]
+    if subset.empty:
+        return []
+
+    features: list[dict[str, Any]] = []
+    for row in subset.itertuples(index=False):
+        mmsi = str(row.MMSI)
+        prediction_row = prediction_by_mmsi.get(mmsi)
+        if prediction_row is None:
+            continue
+
+        start_lon = getattr(row, "start_lon", getattr(prediction_row, "end_lon", None))
+        start_lat = getattr(row, "start_lat", getattr(prediction_row, "end_lat", None))
+        if not valid_lonlat(start_lon, start_lat):
+            continue
+
+        coords = [[float(start_lon), float(start_lat)]]
+        horizons: list[int] = []
+        for horizon in [1, 2, 3, 6]:
+            lat = getattr(row, f"pred_lat_{horizon}h", None)
+            lon = getattr(row, f"pred_lon_{horizon}h", None)
+            if not valid_lonlat(lon, lat):
+                continue
+            coords.append([float(lon), float(lat)])
+            horizons.append(horizon)
+
+        coords = dedupe_coords(coords)
+        if len(coords) < 2:
+            continue
+
+        props = ship_properties(prediction_row)
+        props.update(
+            {
+                "horizons": horizons,
+                "start_timestamp": clean_text(getattr(row, "start_timestamp", None)),
+                "mean_error_km": clean_number(getattr(row, "mean_error_km", None)),
+            }
+        )
+        features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "LineString", "coordinates": coords},
+                "properties": props,
+            }
+        )
+    return features
+
+
 def ship_properties(row: Any) -> dict[str, Any]:
     return {
         "mmsi": str(row.MMSI),
@@ -527,6 +895,12 @@ def ship_properties(row: Any) -> dict[str, Any]:
         "route_probability": clean_number(getattr(row, "predicted_route_probability", None)),
         "is_anomaly": bool(row.is_anomaly),
         "anomaly_score": clean_number(getattr(row, "anomaly_score", None)),
+        "route_distance": clean_number(getattr(row, "route_distance", None)),
+        "route_distance_threshold": clean_number(getattr(row, "route_distance_threshold", None)),
+        "route_distance_ratio": clean_number(getattr(row, "route_distance_ratio", None)),
+        "anchorage_id": clean_text(getattr(row, "predicted_anchorage_id", None)),
+        "anchorage_distance_km": clean_number(getattr(row, "anchorage_distance_km", None)),
+        "anchorage_confidence": clean_number(getattr(row, "anchorage_confidence", None)),
         "bearing": clean_number(getattr(row, "bearing", None)),
         "mean_sog": clean_number(getattr(row, "mean_sog", None)),
         "width": clean_number(getattr(row, "width", None)),
@@ -621,6 +995,21 @@ def feature_collection(features: list[dict[str, Any]]) -> dict[str, Any]:
     return {"type": "FeatureCollection", "features": features}
 
 
+def dataframe_records(df: pd.DataFrame) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    for row in df.to_dict("records"):
+        cleaned: dict[str, Any] = {}
+        for key, value in row.items():
+            if isinstance(value, (int, float, np.integer, np.floating)):
+                cleaned[key] = clean_number(value)
+            elif value is None or (not isinstance(value, str) and pd.isna(value)):
+                cleaned[key] = None
+            else:
+                cleaned[key] = value
+        records.append(cleaned)
+    return records
+
+
 def valid_lonlat(lon: Any, lat: Any) -> bool:
     try:
         lon_float = float(lon)
@@ -657,6 +1046,18 @@ def clean_number(value: Any) -> float | int | None:
     if math.isfinite(number):
         return int(number) if number.is_integer() else number
     return None
+
+
+def clean_text(value: Any) -> str | None:
+    if value is None:
+        return None
+    try:
+        if pd.isna(value):
+            return None
+    except (TypeError, ValueError):
+        pass
+    text = str(value).strip()
+    return text or None
 
 
 def bearing_degrees(lat1: Any, lon1: Any, lat2: Any, lon2: Any) -> float:

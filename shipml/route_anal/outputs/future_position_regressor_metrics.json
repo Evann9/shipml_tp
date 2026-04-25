@@ -1,0 +1,49 @@
+{
+  "model_name": "random_forest_regressor",
+  "display_name": "RandomForestRegressor",
+  "created_at": "2026-04-25T12:23:33.987261+00:00",
+  "evaluation_method": "MMSI GroupShuffleSplit holdout",
+  "horizons_hours": [
+    1,
+    2,
+    3
+  ],
+  "rows": {
+    "supervised": 333472,
+    "train": 267925,
+    "train_used_for_fit": 140030,
+    "test": 65547
+  },
+  "groups": {
+    "train": 2731,
+    "test": 683,
+    "overlap": 0
+  },
+  "holdout_mean_error_km": {
+    "1h": 2.8025085289955403,
+    "2h": 3.87788050144509,
+    "3h": 5.240671611191138
+  },
+  "holdout_mae_degrees": {
+    "target_lat_1h": 0.01732021546177828,
+    "target_lon_1h": 0.025615336378804848,
+    "target_lat_2h": 0.023135142995818682,
+    "target_lon_2h": 0.03783317254238383,
+    "target_lat_3h": 0.030904513977539804,
+    "target_lon_3h": 0.05205958390653211
+  },
+  "feature_columns": [
+    "Latitude",
+    "Longitude",
+    "SOG",
+    "COG",
+    "cog_sin",
+    "cog_cos",
+    "Width",
+    "Length",
+    "Draught",
+    "delta_lat",
+    "delta_lon",
+    "delta_hours"
+  ]
+}

@@ -1,0 +1,12 @@
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Large model artifacts are stored in GitHub Releases, not in Git.
+*.joblib
+*.pkl
+*.pickle
+
+# Local logs and temporary files
+*.log
+*.tmp

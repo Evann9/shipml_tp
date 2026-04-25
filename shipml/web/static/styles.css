@@ -101,8 +101,8 @@ body {
   z-index: 500;
   right: 16px;
   bottom: 22px;
-  width: min(360px, calc(100% - 32px));
-  max-height: min(460px, calc(100% - 120px));
+  width: min(380px, calc(100% - 32px));
+  max-height: min(560px, calc(100% - 120px));
   overflow: auto;
   border: 1px solid rgba(215, 221, 225, 0.9);
   border-radius: 8px;
@@ -111,10 +111,27 @@ body {
   backdrop-filter: blur(10px);
 }
 
+.panel-section {
+  border-bottom: 1px solid var(--line);
+}
+
+.panel-section:last-child {
+  border-bottom: 0;
+}
+
+.panel-section h2 {
+  margin: 0;
+  padding: 11px 14px 9px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
 .metric-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-bottom: 1px solid var(--line);
+  border-top: 1px solid var(--line);
 }
 
 .metric-grid > div {
@@ -129,6 +146,10 @@ body {
 }
 
 .metric-grid > div:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+.metric-grid.compact > div {
   border-bottom: 0;
 }
 
@@ -149,6 +170,14 @@ body {
   line-height: 1.2;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.model-note {
+  padding: 9px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .route-list {
@@ -188,6 +217,125 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+.performance-list,
+.confusion-list {
+  display: grid;
+  gap: 0;
+}
+
+.performance-row,
+.confusion-row {
+  display: grid;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+}
+
+.performance-row {
+  grid-template-columns: minmax(74px, 1fr) 48px 48px 58px;
+}
+
+.confusion-row {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.performance-row:last-child,
+.confusion-row:last-child {
+  border-bottom: 0;
+}
+
+.performance-row.header {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.performance-type,
+.confusion-pair {
+  min-width: 0;
+  overflow: hidden;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.performance-value,
+.confusion-count {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  text-align: right;
+}
+
+.empty-row {
+  padding: 12px 14px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.legend {
+  position: absolute;
+  z-index: 500;
+  bottom: 22px;
+  left: 16px;
+  display: grid;
+  gap: 8px;
+  width: min(220px, calc(100% - 32px));
+  padding: 10px 12px;
+  border: 1px solid rgba(215, 221, 225, 0.9);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.legend-row {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.legend-ship {
+  justify-self: center;
+  width: 0;
+  height: 0;
+  border-right: 6px solid transparent;
+  border-bottom: 15px solid var(--accent);
+  border-left: 6px solid transparent;
+}
+
+.legend-ship.is-anomaly {
+  border-bottom-color: var(--danger);
+}
+
+.legend-line {
+  display: block;
+  width: 22px;
+  border-top: 3px solid var(--accent);
+}
+
+.legend-line.track {
+  border-top-width: 2px;
+  border-top-style: dashed;
+  opacity: 0.65;
+}
+
+.legend-line.future {
+  border-top-color: #be185d;
+  border-top-style: dotted;
+}
+
+.legend-line.route {
+  border-top-color: #2563eb;
+}
+
 .ship-marker {
   border: 0;
   background: transparent;
@@ -215,15 +363,22 @@ body {
 
 .popup-grid {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: minmax(82px, auto) minmax(0, 1fr);
   gap: 3px 12px;
-  min-width: 170px;
+  min-width: 190px;
+  max-width: 280px;
   font-size: 12px;
 }
 
 .popup-grid span:nth-child(odd) {
   color: var(--muted);
   font-weight: 700;
+}
+
+.popup-grid strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-align: right;
 }
 
 @media (max-width: 760px) {
@@ -254,6 +409,10 @@ body {
     bottom: 16px;
     left: 10px;
     width: auto;
-    max-height: 220px;
+    max-height: 270px;
+  }
+
+  .legend {
+    display: none;
   }
 }

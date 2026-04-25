@@ -1,0 +1,198 @@
+{
+  "model_name": "random_forest_group_tuned",
+  "display_name": "RandomForest Tuned (MMSI Group Split)",
+  "trained_at": "2026-04-25T10:23:25.456996+00:00",
+  "train_rows": 316795,
+  "target_classes": [
+    "Cargo",
+    "Dredging",
+    "Fishing",
+    "HSC",
+    "Law enforcement",
+    "Military",
+    "Passenger",
+    "Pilot",
+    "Pleasure",
+    "SAR",
+    "Sailing",
+    "Tanker",
+    "Towing",
+    "Tug"
+  ],
+  "feature_columns": [
+    "navigationalstatus",
+    "sog",
+    "cog",
+    "heading",
+    "width",
+    "length",
+    "draught",
+    "cog_sin",
+    "cog_cos",
+    "heading_sin",
+    "heading_cos"
+  ],
+  "best_metrics": {
+    "model_name": "random_forest_group_tuned",
+    "display_name": "RandomForest Tuned (MMSI Group Split)",
+    "test_accuracy": 0.846251191043354,
+    "macro_f1": 0.6863244986516098,
+    "weighted_f1": 0.843389347169502,
+    "top_confusion_pairs": [
+      {
+        "actual": "Tanker",
+        "predicted": "Cargo",
+        "count": 5142
+      },
+      {
+        "actual": "Cargo",
+        "predicted": "Tanker",
+        "count": 2842
+      },
+      {
+        "actual": "Passenger",
+        "predicted": "Cargo",
+        "count": 661
+      },
+      {
+        "actual": "Dredging",
+        "predicted": "Cargo",
+        "count": 165
+      },
+      {
+        "actual": "Cargo",
+        "predicted": "Dredging",
+        "count": 163
+      },
+      {
+        "actual": "Military",
+        "predicted": "Tug",
+        "count": 142
+      },
+      {
+        "actual": "Cargo",
+        "predicted": "Passenger",
+        "count": 113
+      },
+      {
+        "actual": "Towing",
+        "predicted": "Tug",
+        "count": 113
+      },
+      {
+        "actual": "Fishing",
+        "predicted": "Towing",
+        "count": 110
+      },
+      {
+        "actual": "Military",
+        "predicted": "Dredging",
+        "count": 100
+      },
+      {
+        "actual": "Dredging",
+        "predicted": "Tanker",
+        "count": 90
+      },
+      {
+        "actual": "Passenger",
+        "predicted": "Tanker",
+        "count": 88
+      }
+    ],
+    "best_params": {
+      "classifier__n_estimators": 700,
+      "classifier__min_samples_split": 5,
+      "classifier__min_samples_leaf": 2,
+      "classifier__max_features": "log2",
+      "classifier__max_depth": 48,
+      "classifier__class_weight": "balanced_subsample",
+      "classifier__bootstrap": true
+    },
+    "cv_best_score": 0.5020916369124377,
+    "cv_refit_metric": "macro_f1"
+  },
+  "all_metrics": [
+    {
+      "model_name": "random_forest_group_tuned",
+      "display_name": "RandomForest Tuned (MMSI Group Split)",
+      "test_accuracy": 0.846251191043354,
+      "macro_f1": 0.6863244986516098,
+      "weighted_f1": 0.843389347169502,
+      "top_confusion_pairs": [
+        {
+          "actual": "Tanker",
+          "predicted": "Cargo",
+          "count": 5142
+        },
+        {
+          "actual": "Cargo",
+          "predicted": "Tanker",
+          "count": 2842
+        },
+        {
+          "actual": "Passenger",
+          "predicted": "Cargo",
+          "count": 661
+        },
+        {
+          "actual": "Dredging",
+          "predicted": "Cargo",
+          "count": 165
+        },
+        {
+          "actual": "Cargo",
+          "predicted": "Dredging",
+          "count": 163
+        },
+        {
+          "actual": "Military",
+          "predicted": "Tug",
+          "count": 142
+        },
+        {
+          "actual": "Cargo",
+          "predicted": "Passenger",
+          "count": 113
+        },
+        {
+          "actual": "Towing",
+          "predicted": "Tug",
+          "count": 113
+        },
+        {
+          "actual": "Fishing",
+          "predicted": "Towing",
+          "count": 110
+        },
+        {
+          "actual": "Military",
+          "predicted": "Dredging",
+          "count": 100
+        },
+        {
+          "actual": "Dredging",
+          "predicted": "Tanker",
+          "count": 90
+        },
+        {
+          "actual": "Passenger",
+          "predicted": "Tanker",
+          "count": 88
+        }
+      ],
+      "best_params": {
+        "classifier__n_estimators": 700,
+        "classifier__min_samples_split": 5,
+        "classifier__min_samples_leaf": 2,
+        "classifier__max_features": "log2",
+        "classifier__max_depth": 48,
+        "classifier__class_weight": "balanced_subsample",
+        "classifier__bootstrap": true
+      },
+      "cv_best_score": 0.5020916369124377,
+      "cv_refit_metric": "macro_f1"
+    }
+  ],
+  "skipped_models": {}
+}
