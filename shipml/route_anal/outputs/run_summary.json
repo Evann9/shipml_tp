@@ -117,7 +117,7 @@
       "route_11": 4.7435108245362505
     },
     "train_distance_mean": 2.3492020596787953,
-    "train_distance_std": 1.134031808172742
+    "train_distance_std": 1.1340318081727419
   },
   "anomaly_count": 174,
   "anchorage_cluster_count": 163,
